@@ -1,13 +1,3 @@
-# studentorg/urls.py or projectsite/urls.py depending on where your app's URLs are defined
-
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    # Add the organization list URL
-    path('organizations/', views.OrganizationListView.as_view(), name='organization-list'),
-    # Other URL patterns...
-]
 from django.contrib import admin
 from django.urls import path, re_path
 from studentorg.views import (
