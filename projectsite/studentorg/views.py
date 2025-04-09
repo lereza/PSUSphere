@@ -1,9 +1,8 @@
-# studentorg/views.py
 from django.shortcuts import render
 from django.views.generic.list import ListView
-from studentorg.models import Organization  # Import the Organization model
+from studentorg.models import Organization
 
 class HomePageView(ListView):
-    model = Organization  # Specify the model to query
-    context_object_name = 'home'  # Name of the context variable that will hold the list of organizations
-    template_name = 'home.html'  # Template to render
+    model = Organization          # This will display a list of Organization objects
+    context_object_name = 'home'  # This will be the name used to access the list in the template context
+    template_name = "home.html"   # This specifies the template to render (home.html)
