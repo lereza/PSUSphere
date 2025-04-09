@@ -1,0 +1,21 @@
+# created by virtualenv automatically
+
+# Ignore virtual environment directories
+.venv/
+
+# Ignore __pycache__ directories
+__pycache__/ 
+
+# Ignore compiled Python files
+*.pyc
+*.pyo
+
+# Ignore database files
+*.db
+*.sqlite3
+
+# Ignore log files
+*.log
+
+# Ignore .gitignore files
+*.gitignore
