@@ -26,3 +26,9 @@ class ProgramForm(ModelForm):
     class Meta:
         model = Program
         fields = "__all__"
+
+# Search Form for Full Name and Date
+class SearchForm(forms.Form):
+    fullname = forms.CharField(max_length=100, required=False, label='Full Name')
+    start_date = forms.DateField(widget=forms.SelectDateWidget(), required=False, label='Start Date')
+    end_date = forms.DateField(widget=forms.SelectDateWidget(), required=False, label='End Date')
