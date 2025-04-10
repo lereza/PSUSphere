@@ -1,6 +1,25 @@
+<!-- templates/home.html -->
 {% extends 'base.html' %}
-{% load static %}
 
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <div class="container-fluid">
+            <h4 class="page-title">Home</h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Page Title</div>
+                            <div class="card-category">Page Subtitle</div>
+                        </div>
+                        <div class="card-body">
+                            Hello, World!
+                        </div>
+                    </div>
+{% extends 'base.html' %} 
+{% load static %} 
 {% block content %}
 <div class="content">
     <div class="container-fluid">
@@ -12,24 +31,11 @@
                         <div class="card-title">Page Title</div>
                         <div class="card-category">Page Subtitle</div>
                     </div>
-                    <div class="card-body">
-                        <p>Hello, World</p>
-                        <p>Welcome to the PSU Sphere project!</p>
-
-                        <!-- Display the list of organizations -->
-                        <h5>List of Organizations:</h5>
-                        <ul>
-                            {% for org in home %}
-                                <li>{{ org.name }}</li> <!-- Replace 'name' with the actual field you want to display -->
-                            {% empty %}
-                                <li>No organizations available.</li>
-                            {% endfor %}
-                        </ul>
-
-                    </div>
+                    <div class="card-body">Hello, World</div>
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
 </div>
 {% endblock %}
