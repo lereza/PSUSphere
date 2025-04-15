@@ -12,7 +12,7 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+   path('search/', views.search_view, name='search'),
 
     # Home page
     path('', HomePageView.as_view(), name='home'),
