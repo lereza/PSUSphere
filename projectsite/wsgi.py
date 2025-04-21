@@ -2,7 +2,7 @@ import os
 import sys
 
 # path where you can find the manage.py
-path = '/home/lerezaNolsen/PSUsphere/projectsite'
+path = '/home/olsens/PSUsphere/projectsite'
 if path not in sys.path:
     sys.path.insert(0, path)
 
