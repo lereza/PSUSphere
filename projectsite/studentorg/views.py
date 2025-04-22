@@ -5,25 +5,10 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from studentorg.models import Organization, OrgMember, Student, College, Program
 from studentorg.forms import OrganizationForm, OrgMemberForm, StudentForm, CollegeForm, ProgramForm
-from typing import Any
+from typing import Any 
 from django.db.models.query import QuerySet
 from django.db.models import Q
 
-# Base Search ListView
-class SearchListView(ListView):
-    search_fields = []
-    
-    def get_queryset(self):
-        query = self.request.GET.get('q')
-        qs = super().get_queryset()
-        if query:
-            filters = Q()
-            for field in self.search_fields:
-                filters |= Q(**{f"{field}__icontains": query})
-            qs = qs.filter(filters)
-        return qs
-
-# HomePageView (No Changes needed)
 @method_decorator(login_required, name='dispatch')
 class HomePageView(TemplateView):
     template_name = "home.html"
@@ -36,15 +21,23 @@ class HomePageView(TemplateView):
         context['colleges'] = College.objects.all()
         context['programs'] = Program.objects.all()
         return context
+    
+# Organization URLs
 
-# Organization Views
-
-class OrganizationList(SearchListView):
+class OrganizationList(ListView):
     model = Organization
     context_object_name = 'organizations'
     template_name = 'org_list.html'
     paginate_by = 5
-    search_fields = ['name', 'description']
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super(OrganizationList, self).get_queryset(*args, **kwargs)
+        if self.request.GET.get("q") != None:
+            query = self.request.GET.get('q')
+            qs = qs.filter(Q(name__icontains=query) |
+                           Q(description__icontains=query))
+        return qs
+
 
 class OrganizationCreateView(CreateView):
     model = Organization
@@ -63,14 +56,25 @@ class OrganizationDeleteView(DeleteView):
     template_name = 'org_del.html'
     success_url = reverse_lazy('organization-list')
 
-# Organization Member Views
+# Organization member URLs
 
-class OrgMemberList(SearchListView):
+class OrgMemberList(ListView):
     model = OrgMember
     context_object_name = 'orgMember'
     template_name = 'orgMem_list.html'
     paginate_by = 5
-    search_fields = ['student__firstname', 'student__lastname', 'organization__name', 'organization__description']
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super(OrgMemberList, self).get_queryset(*args, **kwargs)
+        query = self.request.GET.get('q')
+        if query:
+            qs = qs.filter(
+                Q(student__firstname__icontains=query) |
+                Q(student__lastname__icontains=query)  |
+                Q(organization__name__icontains=query) |
+                Q(organization__description__icontains=query)
+            )
+        return qs
 
 class OrgMemberCreateView(CreateView):
     model = OrgMember
@@ -89,14 +93,25 @@ class OrgMemberDeleteView(DeleteView):
     template_name = 'orgMem_del.html'
     success_url = reverse_lazy('orgMem_list')
 
-# Student Views
-
-class StudentList(SearchListView):
+# Student list
+class StudentList(ListView):
     model = Student
     context_object_name = 'students'
     template_name = 'student_list.html'
     paginate_by = 5
-    search_fields = ['firstname', 'lastname', 'middlename', 'student_id', 'program__prog_name']
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super(StudentList, self).get_queryset(*args, **kwargs)
+        query = self.request.GET.get('q')
+        if query:
+            qs = qs.filter(
+                Q(firstname__icontains=query) |
+                Q(lastname__icontains=query)|
+                Q(middlename__icontains=query) |
+                Q(student_id__icontains=query) |
+                Q(program__prog_name__icontains=query)
+            )
+        return qs
 
 class StudentCreateView(CreateView):
     model = Student
@@ -115,14 +130,23 @@ class StudentDeleteView(DeleteView):
     template_name = 'student_del.html'
     success_url = reverse_lazy('student_list')
 
-# College Views
-
-class CollegeList(SearchListView):
+# College list
+    
+class CollegeList(ListView):
     model = College
     context_object_name = 'colleges'
     template_name = 'college_list.html'
     paginate_by = 5
-    search_fields = ['college_name']
+
+   
+    def get_queryset(self, *args, **kwargs):
+        qs = super(CollegeList, self).get_queryset(*args, **kwargs)
+        query = self.request.GET.get('q')
+        if query:
+            qs = qs.filter(
+                Q(college_name__icontains=query)
+            )
+        return qs
 
 class CollegeCreateView(CreateView):
     model = College
@@ -141,14 +165,22 @@ class CollegeDeleteView(DeleteView):
     template_name = 'college_del.html'
     success_url = reverse_lazy('college_list')
 
-# Program Views
-
-class ProgramList(SearchListView):
+# Program URLs
+class ProgramList(ListView):
     model = Program
     context_object_name = 'programs'
     template_name = 'program_list.html'
     paginate_by = 5
-    search_fields = ['college__college_name', 'prog_name']
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super(ProgramList, self).get_queryset(*args, **kwargs)
+        query = self.request.GET.get('q')
+        if query:
+            qs = qs.filter(
+                Q(college__college_name__icontains=query)|
+                Q(prog_name__icontains=query)
+            )
+        return qs
 
 class ProgramCreateView(CreateView):
     model = Program
