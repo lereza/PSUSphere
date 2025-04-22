@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-*g5@z@@^5y0lp&!--=p@7se!gezjmcp^=0$^@@zotz@l(ns6r)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['psusphere.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = ['olsenola.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
@@ -118,8 +118,8 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'  # Used for collecting static files
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Redirect URL after login (optional, you can change this based on your needs)
+# Redirect URL after login 
 LOGIN_REDIRECT_URL = '/'  # Redirect to the home page after successful login
 
-# URL for login page (optional, specify a custom login page if needed)
+# URL for login page
 LOGIN_URL = 'login'  # The URL pattern name for the login page
