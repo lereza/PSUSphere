@@ -3,7 +3,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
@@ -15,9 +14,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['olsenola.pythonanywhere.com', '127.0.0.1']
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,7 +41,7 @@ ROOT_URLCONF = 'projectsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Look for templates in the 'templates' directory
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -59,10 +56,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'projectsite.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -70,10 +65,8 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -89,51 +82,27 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
-
 STATIC_URL = '/static/'
-
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # Look for static files here
+    BASE_DIR / 'static',
 ]
-
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Used for collecting static files
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 # Redirect URL after login 
 LOGIN_REDIRECT_URL = '/'  # Redirect to the home page after successful login
 
 # URL for login page
-=======
-# Redirect URL after login (optional, you can change this based on your needs)
-LOGIN_REDIRECT_URL = '/'  # Redirect to the home page after successful login
-
-# URL for login page (optional, specify a custom login page if needed)
->>>>>>> 945512b (Fix: Update settings, views, and login integration)
-=======
-# Redirect URL after login 
-LOGIN_REDIRECT_URL = '/'  # Redirect to the home page after successful login
-
-# URL for login page
->>>>>>> 9031cf3 (Updated settings.py after merge conflict)
 LOGIN_URL = 'login'  # The URL pattern name for the login page
