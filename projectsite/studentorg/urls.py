@@ -4,15 +4,15 @@ from studentorg.views import (
     HomePageView,
     OrganizationList, OrganizationCreateView, OrganizationUpdateView, OrganizationDeleteView,
     OrgMemberList, OrgMemberCreateView, OrgMemberUpdateView, OrgMemberDeleteView,
-    StudentList,StudentCreateView,StudentUpdateView,StudentDeleteView,
+    StudentList, StudentCreateView, StudentUpdateView, StudentDeleteView,
     CollegeList, CollegeCreateView, CollegeUpdateView, CollegeDeleteView,
     ProgramList, ProgramCreateView, ProgramUpdateView, ProgramDeleteView,
 )
 from django.contrib.auth import views as auth_views
 
-
 urlpatterns = [
-   path('search/', views.search_view, name='search'),
+    # Search URL (if applicable)
+    path('search/', views.search_view, name='search'),
 
     # Home page
     path('', HomePageView.as_view(), name='home'),
@@ -22,8 +22,9 @@ urlpatterns = [
     path('organization_list/add/', OrganizationCreateView.as_view(), name='organization-add'),
     path('organization_list/<int:pk>/', OrganizationUpdateView.as_view(), name='organization-update'),
     path('organization_list/<int:pk>/delete/', OrganizationDeleteView.as_view(), name='organization-delete'),
-    re_path(r'^login/$', auth_views.LoginView.as_view(
-    template_name='login.html'), name='login'),
+
+    # Login and Logout URLs
+    re_path(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     re_path(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
 
     # Organization member URLs
@@ -32,23 +33,21 @@ urlpatterns = [
     path('orgMember_list/<int:pk>/', OrgMemberUpdateView.as_view(), name='orgMem-update'),
     path('orgMember_list/<int:pk>/delete/', OrgMemberDeleteView.as_view(), name='orgMem-delete'),
 
-
-    # Student list
+    # Student list URLs
     path('student_list/', StudentList.as_view(), name='student_list'),
     path('student_list/add/', StudentCreateView.as_view(), name='student-add'),
     path('student_list/<int:pk>/', StudentUpdateView.as_view(), name='student-update'),
     path('student_list/<int:pk>/delete/', StudentDeleteView.as_view(), name='student-delete'),
 
-    # College list
+    # College list URLs
     path('college_list/', CollegeList.as_view(), name='college_list'),
     path('college_list/add/', CollegeCreateView.as_view(), name='college-add'),
     path('college_list/<int:pk>/', CollegeUpdateView.as_view(), name='college-update'),
     path('college_list/<int:pk>/delete/', CollegeDeleteView.as_view(), name='college-delete'),
 
-    # Program URLs
+    # Program list URLs
     path('program_list/', ProgramList.as_view(), name='program_list'),
     path('program_list/add/', ProgramCreateView.as_view(), name='program-add'),
     path('program_list/<int:pk>/', ProgramUpdateView.as_view(), name='program-update'),
     path('program_list/<int:pk>/delete/', ProgramDeleteView.as_view(), name='program-delete'),
-    
 ]

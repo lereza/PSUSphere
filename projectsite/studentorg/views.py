@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView  # Import LoginView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from studentorg.models import Organization, OrgMember, Student, College, Program
@@ -8,6 +9,15 @@ from studentorg.forms import OrganizationForm, OrgMemberForm, StudentForm, Colle
 from typing import Any 
 from django.db.models.query import QuerySet
 from django.db.models import Q
+
+# Custom Login View (uses login.html template)
+class CustomLoginView(LoginView):
+    template_name = 'login.html'  # Specify your login template
+
+    def get_success_url(self):
+        # Redirect to home page after successful login
+        return reverse_lazy('home')  # Modify based on your URL pattern for the home page
+
 
 @method_decorator(login_required, name='dispatch')
 class HomePageView(TemplateView):
