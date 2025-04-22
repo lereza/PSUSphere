@@ -118,8 +118,15 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'  # Used for collecting static files
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+<<<<<<< HEAD
 # Redirect URL after login 
 LOGIN_REDIRECT_URL = '/'  # Redirect to the home page after successful login
 
 # URL for login page
+=======
+# Redirect URL after login (optional, you can change this based on your needs)
+LOGIN_REDIRECT_URL = '/'  # Redirect to the home page after successful login
+
+# URL for login page (optional, specify a custom login page if needed)
+>>>>>>> 945512b (Fix: Update settings, views, and login integration)
 LOGIN_URL = 'login'  # The URL pattern name for the login page

@@ -61,6 +61,7 @@
                                                 </span>
                                                 <span class="time">5 minutes ago</span> 
                                             </div>
+<<<<<<< HEAD
                                         </a>
                                         <a href="#">
                                             <div class="notif-icon notif-success"> <i class="la la-comment"></i> </div>
@@ -165,6 +166,26 @@
                                     <a href="#settings">
                                         <span class="link-collapse">Settings</span>
                                     </a>
+=======
+                                        </li>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#"><i class="ti-user"></i> My Profile</a>
+                                        <a class="dropdown-item" href="#"></i> My Balance</a>
+                                        <a class="dropdown-item" href="#"><i class="ti-email"></i> Inbox</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#"><i class="ti-settings"></i> Account Setting</a>
+                                        <div class="dropdown-divider"></div>
+                                        <div class="dropdown-divider"></div>
+                                        <form method="post" action="{% url 'logout' %}" style="margin: 0;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="dropdown-item" style="background: none; border: none; padding: 0.25rem 1.5rem; width: 100%; text-align: left;">
+                                        <i class="fa fa-power-off"></i> Logout
+                                        </button>
+                                        </form>
+
+                                    </ul>
+                                    <!-- /.dropdown-user -->
+>>>>>>> 945512b (Fix: Update settings, views, and login integration)
                                 </li>
                             </ul>
                         </div>
@@ -215,6 +236,7 @@
             {% endblock %}
             <div class="container-fluid"></div>
         </div>
+<<<<<<< HEAD
     </div>
 </body>
 <script src="{% static 'js/core/jquery.3.2.1.min.js' %}"></script>
@@ -227,3 +249,19 @@
 <script src="{% static 'js/ready.min.js' %}"></script>
 <script src="{% static 'js/demo.js' %}"></script>
 </html>
+=======
+    </body>
+    <script src="{% static 'js/core/jquery.3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/core/popper.min.js' %}"></script>
+    <script src="{% static 'js/core/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/plugin/chartist/chartist.min.js' %}"></script>
+    <script src="{% static 'js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js' %}"></script>
+    <script src="{% static 'js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+    <script src="{% static 'js/plugin/bootstrap-toggle/bootstrap-toggle.min.js' %}"></script>
+    <script src="{% static 'js/plugin/jquery-mapael/jquery.mapael.min.js' %}"></script>
+    <script src="{% static 'js/plugin/jquery-mapael/maps/world_countries.min.js' %}"></script>
+    <script src="{% static 'js/plugin/chart-circle/circles.min.js' %}"></script>
+    <script src="{% static 'js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+    <script src="{% static 'js/ready.min.js' %}"></script>
+>>>>>>> 945512b (Fix: Update settings, views, and login integration)
