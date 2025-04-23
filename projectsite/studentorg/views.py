@@ -107,7 +107,7 @@ class OrgMemberDeleteView(DeleteView):
 class StudentList(ListView):
     model = Student
     context_object_name = 'students'
-    template_name = 'student_list.html'
+    template_name = 'Student_list.html'
     paginate_by = 5
 
     def get_queryset(self, *args, **kwargs):
