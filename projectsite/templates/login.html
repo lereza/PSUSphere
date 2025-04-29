@@ -7,53 +7,129 @@
     <title>{% block title %}PSUSphere{% endblock %}</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport" />
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" />
     <link rel="stylesheet" href="{% static 'css/ready.css' %}" />
     <link rel="stylesheet" href="{% static 'css/demo.css' %}" />
+    <style>
+        body {
+            background-color: #007bff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        
+
+        .wrapper {
+            background: rgba(255, 255, 255, 0.85); 
+            border-radius: 15px;
+            padding: 30px 40px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            height: auto; /* Adjusts the height to fit content, but controlled by padding */
+            min-height: 350px; /* Sets a minimum height for a medium-sized form */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 16px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .alert-danger {
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .h3 {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .mt-5 {
+            font-family: 'Nunito', sans-serif;
+            color: #aaa;
+        }
+
+        img.mb-4 {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
-<body class="text-center">
-    <br>
+<body>
     <div class="wrapper">
         <div class="container">
             <div class="row justify-content-center align-items-center">
-                <div class="col-md-4 text-center">
+                <div class="col-md-12 text-center">
                     <form role="post" method="post">
                         {% csrf_token %}
-                        <img class="mb-4" src="{% static 'img/profile.jpg' %}" alt="" width="72" height="72" />
-                        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                        <img class="mb-4" src="{% static 'img/loginn.jpg' %}" alt="" />
+                        
                         <label for="inputEmail" class="sr-only">Username</label>
                         <input type="text" name="username" class="form-control" placeholder="Username" required autofocus />
+                        
                         <label for="inputPassword" class="sr-only">Password</label>
                         <input type="password" name="password" class="form-control" placeholder="Password" required />
 
                         {% if form.non_field_errors %}
-                        <div class="alert alert-danger" role="alert">
-                            {% for error in form.non_field_errors %}
-                            <p{% if forloop.last %} class="mb-0"{% endif %}>{{ error }}</p>
-                            {% endfor %}
-                        </div>
+                            <div class="alert alert-danger" role="alert">
+                                {% for error in form.non_field_errors %}
+                                    <p{% if forloop.last %} class="mb-0"{% endif %}>{{ error }}</p>
+                                {% endfor %}
+                            </div>
                         {% endif %}
 
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                        <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+                        <p class="mt-5 mb-3 text-muted">&copy; 2024-2025</p>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="{% static 'js/core/jquery.3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/core/popper.min.js' %}"></script>
+    <script src="{% static 'js/core/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/plugin/chartist/chartist.min.js' %}"></script>
+    <script src="{% static 'js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js' %}"></script>
+    <script src="{% static 'js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+    <script src="{% static 'js/plugin/bootstrap-toggle/bootstrap-toggle.min.js' %}"></script>
+    <script src="{% static 'js/plugin/jquery-mapael/jquery.mapael.min.js' %}"></script>
+    <script src="{% static 'js/plugin/jquery-mapael/maps/world_countries.min.js' %}"></script>
+    <script src="{% static 'js/plugin/chart-circle/circles.min.js' %}"></script>
+    <script src="{% static 'js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+    <script src="{% static 'js/ready.min.js' %}"></script>
 </body>
-<script src="{% static 'js/core/jquery.3.2.1.min.js' %}"></script>
-<script src="{% static 'js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
-<script src="{% static 'js/core/popper.min.js' %}"></script>
-<script src="{% static 'js/core/bootstrap.min.js' %}"></script>
-<script src="{% static 'js/plugin/chartist/chartist.min.js' %}"></script>
-<script src="{% static 'js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js' %}"></script>
-<script src="{% static 'js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
-<script src="{% static 'js/plugin/bootstrap-toggle/bootstrap-toggle.min.js' %}"></script>
-<script src="{% static 'js/plugin/jquery-mapael/jquery.mapael.min.js' %}"></script>
-<script src="{% static 'js/plugin/jquery-mapael/maps/world_countries.min.js' %}"></script>
-<script src="{% static 'js/plugin/chart-circle/circles.min.js' %}"></script>
-<script src="{% static 'js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
-<script src="{% static 'js/ready.min.js' %}"></script>
 </html>
