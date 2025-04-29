@@ -1,0 +1,414 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="page-inner">
+  <h4 class="page-title">Chart.js</h4>
+  <div class="page-category"></a></div>
+  <div class="row">
+    <!--
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Line Chart</div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container">
+            <canvas id="lineChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    -->
+    <div class="col-md-10 ml-5 mt-4 mr-1">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Number of members per organization Bar Chart</div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container">
+            <canvas id="barChart" style="width: 70%; height: 60%"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+     <!--
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Pie Chart</div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container">
+            <canvas id="pieChart" style="width: 50%; height: 50%"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    -->
+    <div class="col-md-5 ml-5 mt-1 mr-1">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Organization Percentage per College Doughnut Chart</div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container">
+            <canvas id="doughnutChart" style="width: 40vw; height: 40vh"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 ml-5 mt-1 mr-1">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Students per College Radar Chart</div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container">
+            <canvas id="radarChart" style="width: 40vw; height: 40vh"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 ml-5 mt-1 mr-1">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Student Joining Dates per Organization</div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container">
+            <canvas id="myRadarChart" style="width: 40vw; height: 40vh"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 ml-5 mt-1 mr-1">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Student per Program Polar Chart</div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container">
+            <canvas id="polarChart" style="width: 40vw; height: 40vh"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Multiple Line Chart</div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container">
+            <canvas id="multipleLineChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Multiple Bar Chart</div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container">
+            <canvas id="multipleBarChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Chart with HTML Legends</div>
+        </div>
+        <div class="card-body">
+          <div class="card-sub">Sometimes you need a very complex legend. In these cases, it makes sense to generate an HTML legend. Charts provide a generateLegend() method on their prototype that returns an HTML string for the legend.</div>
+          <div class="chart-container">
+            <canvas id="htmlLegendsChart"></canvas>
+          </div>
+          <div id="myChartLegend"></div>
+        </div>
+      </div>
+    </div>
+    -->
+  </div>
+</div>
+{% endblock %} {% block chart %}
+<script>
+  // var lineChart = document.getElementById("lineChart").getContext("2d"),
+   // barChart = document.getElementById("barChart").getContext("2d"),
+  
+   // pieChart = document.getElementById("pieChart").getContext("2d"),
+    //dough nutChart = document.getElementById("doughnutChart").getContext("2d"),
+   // radarChart = document.getElementById("radarChart").getContext("2d"),
+    //bubbleChart = document.getElementById("bubbleChart").getContext("2d"),
+    //multipleLineChart = document.getElementById("multipleLineChart").getContext("2d"),
+    //multipleBarChart = document.getElementById("multipleBarChart").getContext("2d"),
+    // htmlLegendsChart = document.getElementById("htmlLegendsChart").getContext("2d");
+
+  
+
+var barChart = new Chart(document.getElementById("barChart").getContext("2d"), {
+    type: 'bar',
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'Members',
+            data: [],
+            backgroundColor:  ['rgba(255, 206, 86,  0.4)', 'rgba(37, 26, 117, 0.4)', 'rgba(107, 2, 42, 0.4)', 'rgba(255, 109, 36,  0.4)', 'rgba(7, 235, 147, 0.4)', 'rgba(54, 162, 235, 0.4)'],
+        }]
+    },
+    options: {
+        legend: {
+            position: "bottom",
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    stepSize: 1
+                },
+            }],
+        },
+    }
+});
+
+// Fetch data from the Django backend
+fetch("/barChart/")
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+        // Extract labels and data from the response
+        var labels = Object.keys(data);
+        var counts = Object.values(data);
+
+        // Update the chart data
+        barChart.data.labels = labels;
+        barChart.data.datasets[0].data = counts;
+
+        // Update the chart
+        barChart.update();
+    })
+    .catch((error) => {
+        console.error("Error fetching data:", error);
+    });
+
+
+
+
+
+
+    var doughnutChart = new Chart(document.getElementById("doughnutChart").getContext("2d"), {
+    type: 'doughnut',
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'Number of Members',
+            data: [],
+            backgroundColor: ['rgba(255, 206, 86)', 'rgba(37, 26, 117)', 'rgba(107, 2, 42)', 'rgba(255, 109, 36)', 'rgba(7, 235, 147)', 'rgba(54, 162, 235)'],
+            borderWidth: 1
+        }]
+    },
+    options: {
+      pieceLabel: {
+        render: "percentage",
+        fontColor: "white",
+        fontSize: 14,
+      },
+        legend: {
+            position: "bottom",
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+    }
+});
+
+
+fetch("/doughnutChart/")
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+        var labels = Object.keys(data);
+        var counts = Object.values(data);
+
+        doughnutChart.data.labels = labels;
+        doughnutChart.data.datasets[0].data = counts;
+
+
+        doughnutChart.update();
+    })
+    .catch((error) => {
+        console.error("Error fetching data:", error);
+    });
+
+
+
+    var radarChart = new Chart(document.getElementById("radarChart").getContext("2d"), {
+    type: 'radar',
+    data: {
+        labels: [], 
+        datasets: [{
+            label: 'Number of Students per College',
+            data: [],
+            backgroundColor: 'rgba(20, 0, 240, 0.2)',
+            borderColor: 'rgba(20, 0, 240, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        legend: {
+            position: "bottom",
+        },
+        scale: {
+            ticks: {
+                beginAtZero: true
+            }
+        },
+        responsive: true, 
+        maintainAspectRatio: false,
+        
+        plugins: {
+            datalabels: {
+                formatter: function(value, context) {
+                    if (window.innerWidth < 600) {
+                        return value.length > 10 ? value.substring(0, 10) + '...' : value;
+                    }
+                    return value;
+                }
+            }
+        }
+    }
+});
+
+// Fetch data from the Django backend
+fetch("/students_per_college/")
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+        var labels = Object.keys(data);
+        var counts = Object.values(data);
+
+
+        radarChart.data.labels = labels;
+        radarChart.data.datasets[0].data = counts;
+
+        radarChart.update();
+    })
+    .catch((error) => {
+        console.error("Error fetching data:", error);
+    });
+
+    
+
+
+
+    var myRadarChart = new Chart(document.getElementById("myRadarChart").getContext("2d"), {
+    type: 'radar',
+    data: {
+        labels: [], 
+        datasets: [{
+            label: 'Date Joined',
+            data: [],
+            backgroundColor: 'rgba(174, 237, 14, 0.6)',
+            borderColor: 'rgba(174, 237, 14, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+            position: "bottom",
+        },
+        scale: {
+            ticks: {
+                beginAtZero: true,
+                stepSize: 1
+            }
+        }
+    }
+});
+
+fetch("/myRadarChart/")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+
+        const labels = data.labels;
+        const counts = data.counts;
+  
+        myRadarChart.data.labels = labels;
+        myRadarChart.data.datasets[0].data = counts;
+
+        myRadarChart.update();
+    })
+    .catch(error => console.error('Error fetching data:', error));
+
+
+
+
+
+
+
+// Create the polar area chart
+var polarChart = new Chart(document.getElementById("polarChart").getContext("2d"), {
+    type: 'polarArea',
+    data: {
+        labels: [], // Array to store program names
+        datasets: [{
+            label: 'Students per Program',
+            data: [],
+            backgroundColor: [ 
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(153, 102, 255, 0.6)',
+                'rgba(255, 159, 64, 0.6)',
+                'rgba(3, 252, 7, 0.6)'
+
+                
+            ],
+            
+            
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+            position: 'bottom',
+        },
+        scale: {
+            ticks: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+fetch("/polarChart/")
+    .then(response => response.json())
+    .then(data => {
+        
+        const labels = Object.keys(data); 
+        const counts = Object.values(data);
+
+        polarChart.data.labels = labels;
+        polarChart.data.datasets[0].data = counts;
+
+
+        polarChart.update();
+    })
+    .catch(error => console.error('Error fetching data:', error));
+
+
+
+
+</script>
+{% endblock %}
